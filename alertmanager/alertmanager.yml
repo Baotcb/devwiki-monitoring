@@ -7,7 +7,8 @@ route:
 receivers:
   - name: "mezon-webhook"
     slack_configs:
-      - api_url: "https://webhook.mezon.ai/webhooks/2095396828265582592/MTc4OTQ1NDIwNjU3OTg5NzE0OToyMDk1Mzk2Nzg2MTI5NjA0NjA4OjIwOTUzOTY4MjgyNjU1ODI1OTI6MjA5OTc0OTI0NTQ0Njc4NzA3Mg.UI9JS9rDeoeRUEZW87KdGtVW6TBqSXr873y1P1nDTKY"
+      - api_url: "https://discord.com/api/webhooks/1549278121184862338/UJzAAxNng97TLwIcGqs_4CvHrEEQ7_KbTi92baA-J2zj_ZcCa5wvFY3ADzSGARq2_TO6/slack"
+        channel: "#alerts"
         send_resolved: true
         title: "[{{ .Status | toUpper }}] {{ .GroupLabels.alertname }}"
         text: >-
