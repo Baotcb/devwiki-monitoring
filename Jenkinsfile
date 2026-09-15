@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
     environment {
         SSH_CREDENTIALS_ID = 'devwiki-target-ssh'
         DEPLOY_HOST_ID     = 'devwiki-deploy-host'
