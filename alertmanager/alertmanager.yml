@@ -7,7 +7,7 @@ route:
 receivers:
   - name: "mezon-webhook"
     slack_configs:
-      - api_url: "https://webhook.mezon.ai/webhooks/2095396828265582592/MTc4ODQxNjUyMzA5NDE2NTQ4ODoyMDk1Mzk2Nzg2MTI5NjA0NjA4OjIwOTUzOTY4MjgyNjU1ODI1OTI6MjA5NTM5Njg4NTE5NDg3MDc4NA.w7F1OOY5kdc-LHBfwSbmKhEcOCwIvSf_Am6u14EF81U/slack"
+      - api_url: "https://webhook.mezon.ai/webhooks/2095396828265582592/MTc4ODQxNjUyMzA5NDE2NTQ4ODoyMDk1Mzk2Nzg2MTI5NjA0NjA4OjIwOTUzOTY4MjgyNjU1ODI1OTI6MjA5NTM5Njg4NTE5NDg3MDc4NA.w7F1OOY5kdc-LHBfwSbmKhEcOCwIvSf_Am6u14EF81U"
         send_resolved: true
         title: "[{{ .Status | toUpper }}] {{ .GroupLabels.alertname }}"
         text: >-
