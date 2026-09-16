@@ -2,7 +2,7 @@ groups:
   - name: host_alerts
     rules:
       - alert: HighCpuLoad
-        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 10
+        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 1
         for: 2m
         labels:
           severity: warning
@@ -10,7 +10,7 @@ groups:
           alert_msg: 'CPU host đang ở mức {{ printf "%.2f" $value }}%.'
 
       - alert: HighMemoryUsage
-        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 10
+        expr: avg by(instance) ((1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100) > 10
         for: 2m
         labels:
           severity: warning
