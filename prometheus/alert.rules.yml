@@ -2,19 +2,17 @@ groups:
   - name: host_alerts
     rules:
       - alert: HighCpuLoad
-        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
+        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 10
         for: 2m
         labels:
           severity: warning
-        annotations:
-          summary: "CPU Load cao trên VM"
-          description: "CPU host đang ở mức {{ $value }}% trong hơn 2 phút."
+          alert_type: "Cảnh báo quá tải CPU"
+          alert_msg: 'CPU host đang ở mức {{ printf "%.2f" $value }}%.'
 
       - alert: HighMemoryUsage
         expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 10
         for: 2m
         labels:
           severity: warning
-        annotations:
-          summary: "RAM Load cao trên VM"
-          description: 'Mức sử dụng RAM của máy chủ {{ $labels.instance }} đang ở mức {{ printf "%.2f" $value }}% trong hơn 2 phút.'
+          alert_type: "Cảnh báo đầy RAM"
+          alert_msg: 'RAM máy chủ {{ $labels.instance }} đang ở mức {{ printf "%.2f" $value }}%.'
