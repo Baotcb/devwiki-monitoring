@@ -3,7 +3,7 @@ groups:
     rules:
       - alert: HighCpuLoad
         expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 1
-        for: 2m
+        for: 0m
         labels:
           severity: warning
           alert_type: "Cảnh báo quá tải CPU"
@@ -11,7 +11,7 @@ groups:
 
       - alert: HighMemoryUsage
         expr: 100 - ((avg_over_time(node_memory_MemAvailable_bytes[5m]) / avg_over_time(node_memory_MemTotal_bytes[5m])) * 100) > 1
-        for: 2m
+        for: 0m
         labels:
           severity: warning
           alert_type: "Cảnh báo đầy RAM"
