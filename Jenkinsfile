@@ -49,10 +49,7 @@ pipeline {
                             docker compose pull
                             docker compose up -d --remove-orphans
                             
-                            if docker ps | grep -q prometheus; then
-                                echo "Reloading Prometheus config..."
-                                curl -s -X POST http://localhost:9090/-/reload || true
-                            fi
+                            docker compose restart
 REMOTE_SCRIPT
                     '''
                 }
