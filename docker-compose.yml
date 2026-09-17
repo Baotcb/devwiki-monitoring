@@ -86,7 +86,17 @@ services:
       - loki
     networks:
       - monitoring
-
+      
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.25.0
+    container_name: blackbox-exporter
+    restart: unless-stopped
+    volumes:
+      - ./blackbox/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
+    networks:
+      - monitoring
+      - devwiki_frontend-network
+      - devwiki_backend-network
 
 
 volumes:
@@ -96,3 +106,7 @@ volumes:
 networks:
   monitoring:
     driver: bridge
+  devwiki_frontend-network:
+    external: true
+  devwiki_backend-network:
+    external: true
