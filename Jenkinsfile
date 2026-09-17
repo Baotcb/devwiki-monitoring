@@ -39,7 +39,7 @@ pipeline {
                         sshpass -e ssh $SSH_OPTS "$REMOTE" "mkdir -p $TARGET_DIR"
 
                         echo "Copy file cấu hình sang VM 1..."
-                        sshpass -e scp $SSH_OPTS -r docker-compose.yml prometheus alertmanager grafana "$REMOTE:$TARGET_DIR/"
+                        sshpass -e scp $SSH_OPTS -r docker-compose.yml prometheus alertmanager grafana blackbox promtail-config.yml "$REMOTE:$TARGET_DIR/"
 
                         echo "Khởi động lại Monitoring Stack..."
                         sshpass -e ssh $SSH_OPTS "$REMOTE" bash -s -- "$TARGET_DIR" <<'REMOTE_SCRIPT'
