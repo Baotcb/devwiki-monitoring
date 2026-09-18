@@ -36,7 +36,7 @@ groups:
           alert_msg: "{{ $labels.instance }} phản hồi chậm hơn 2 giây trong 5 phút liên tục."
 
       - alert: ContainerRestartingFrequently
-        expr: rate(container_start_time_seconds{name=~"devwiki.*"}[5m]) > 0.01
+        expr: rate(container_start_time_seconds{name=~"devwiki-api"}[5m]) > 0.01
         for: 1m
         labels:
           severity: critical
