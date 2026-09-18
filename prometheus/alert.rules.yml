@@ -41,6 +41,6 @@ groups:
         labels:
           severity: critical
           alert_type: "Cảnh báo Container restart liên tục"
-          alert_msg: "Container {{ $labels.name }} đang bị restart liên tục trong 5 phút qua."
+          alert_msg: "Container {{ $labels.name }} đã restart {{ $value }} lần trong 10 phút qua."
         annotations:
-          description: "Container {{ $labels.name }} đang bị restart liên tục trong 5 phút qua."
+          description: "Container {{ $labels.name }} đã restart {{ $value }} lần trong 10 phút qua."
