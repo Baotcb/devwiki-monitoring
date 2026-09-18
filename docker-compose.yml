@@ -72,7 +72,7 @@ services:
     restart: unless-stopped
     networks:
       - monitoring
-  
+
   promtail:
     image: grafana/promtail:2.9.2
     container_name: promtail
@@ -86,7 +86,7 @@ services:
       - loki
     networks:
       - monitoring
-      
+
   blackbox-exporter:
     image: prom/blackbox-exporter:v0.25.0
     container_name: blackbox-exporter
@@ -97,7 +97,6 @@ services:
       - monitoring
       - devwiki_frontend-network
       - devwiki_backend-network
-
 
 volumes:
   prometheus_data:
