@@ -36,10 +36,11 @@ groups:
           alert_msg: "{{ $labels.instance }} phản hồi chậm hơn 2 giây trong 5 phút liên tục."
 
       - alert: ContainerRestartingFrequently
-+        expr: rate(container_start_time_seconds{name=~"devwiki.*"}[5m]) > 0.01
-+        for: 1m
-+        labels:
-+          severity: critical
-+          alert_type: "Cảnh báo Container restart liên tục"
-+        annotations:
-+          description: "Container {{ $labels.name }} đang bị restart liên tục trong 5 phút qua."
+        expr: rate(container_start_time_seconds{name=~"devwiki.*"}[5m]) > 0.01
+        for: 1m
+        labels:
+          severity: critical
+          alert_type: "Cảnh báo Container restart liên tục"
+          alert_msg: "Container {{ $labels.name }} đang bị restart liên tục trong 5 phút qua."
+        annotations:
+          description: "Container {{ $labels.name }} đang bị restart liên tục trong 5 phút qua."
