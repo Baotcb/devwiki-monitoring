@@ -36,14 +36,11 @@ groups:
           alert_msg: "{{ $labels.instance }} phản hồi chậm hơn 2 giây trong 5 phút liên tục."
 
       - alert: ContainerRestartingFrequently
-        expr: >
-          count_over_time(
-            (time() - max by (name)(container_start_time_seconds{name="devwiki-api"}) < 180)
-          [10m:1m]) > 2
+        expr: changes(container_start_time_seconds{name="devwiki-api"}[1h]) > 3
         for: 0m
         labels:
           severity: critical
           alert_type: "Cảnh báo Container restart liên tục"
-          alert_msg: "Container {{ $labels.name }} đã restart nhiều lần trong 10 phút qua."
+          alert_msg: "Container devwiki-api đã restart {{ $value }} lần trong 1 giờ qua do Docker exponential backoff."
         annotations:
-          description: "Container {{ $labels.name }} đã restart nhiều lần trong 10 phút qua (phát hiện {{ $value }} lần khởi động mới trong cửa sổ 10 phút)."
+          description: "Container devwiki-api đã restart {{ $value }} lần trong 1 giờ qua do Docker exponential backoff."
