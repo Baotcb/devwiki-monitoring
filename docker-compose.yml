@@ -37,8 +37,10 @@ services:
     ports:
       - "127.0.0.1:3001:3000"
     environment:
-      - GF_SERVER_ROOT_URL=https://devwiki.local/grafana
+      - GF_SERVER_DOMAIN=devwiki.local
+      - GF_SERVER_ROOT_URL=https://devwiki.local/grafana/
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SECURITY_CSRF_TRUSTED_ORIGINS=devwiki.local
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
