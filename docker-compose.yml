@@ -10,8 +10,12 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
       - "127.0.0.1:9090:9090"
+    environment:
+      - GF_SERVER_ROOT_URL=https://devwiki.local/prometheus
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
     networks:
       - monitoring
+      - devwiki_frontend-network
 
   alertmanager:
     image: prom/alertmanager:latest
@@ -32,11 +36,15 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:3001:3000"
+    environment:
+      - GF_SERVER_ROOT_URL=https://devwiki.local/grafana
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     networks:
       - monitoring
+      - devwiki_frontend-network
     depends_on:
       - prometheus
 
