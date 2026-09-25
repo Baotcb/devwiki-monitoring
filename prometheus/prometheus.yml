@@ -29,7 +29,7 @@ scrape_configs:
       module: [http_2xx]
     static_configs:
       - targets:
-          - http://devwiki-nginx/nginx-health
+          - https://devwiki-nginx:443/nginx-health
           - http://devwiki-api:3000/api/health
     relabel_configs:
       - source_labels: [__address__]
