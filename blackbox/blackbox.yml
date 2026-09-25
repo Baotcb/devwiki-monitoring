@@ -7,5 +7,5 @@ modules:
       preferred_ip_protocol: ip4
       follow_redirects: true
       valid_status_codes: [200, 201, 202, 204]
-    tls_config:
-      insecure_skip_verify: true
+      tls_config:
+        insecure_skip_verify: true
