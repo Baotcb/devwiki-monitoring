@@ -8,6 +8,7 @@ services:
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-remote-write-receiver'
     ports:
       - "9090:9090"
     networks:
@@ -93,6 +94,21 @@ services:
     restart: unless-stopped
     volumes:
       - ./blackbox/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
+    networks:
+      - monitoring
+      - devwiki_frontend-network
+      - devwiki_backend-network
+
+  k6:
+    image: grafana/k6:latest
+    container_name: k6
+    profiles:
+      - stress-test
+    volumes:
+      - ./k6/scripts:/scripts
+    environment:
+      - K6_PROMETHEUS_RW_SERVER_URL=http://prometheus:9090/api/v1/write
+      - K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM=true
     networks:
       - monitoring
       - devwiki_frontend-network
