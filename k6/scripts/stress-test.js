@@ -10,6 +10,9 @@ const errorCount = new Counter('error_count');
 const apiLatency = new Trend('api_latency_ms', true);
 
 export const options = {
+
+  insecureSkipTLSVerify: true,
+
   stages: [
     { duration: '2m', target: 50 },
     { duration: '2m', target: 50 },

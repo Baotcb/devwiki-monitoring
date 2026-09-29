@@ -10,12 +10,13 @@ export const options = {
   vus: 1,
   duration: '30s',
 
+
+  insecureSkipTLSVerify: true,
+
   thresholds: {
     ...THRESHOLDS_SMOKE,
     success_rate: ['rate>0.99'],
   },
-
-
 };
 
 export default function () {

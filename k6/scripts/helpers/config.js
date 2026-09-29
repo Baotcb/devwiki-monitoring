@@ -24,7 +24,6 @@ export const HTTP_PARAMS = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
-  insecureSkipTLSVerify: true,
 };
 
 

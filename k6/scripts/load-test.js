@@ -4,12 +4,14 @@ import { check, sleep, group } from 'k6';
 import { Rate, Trend } from 'k6/metrics';
 import { BASE_URL_FRONTEND, BASE_URL_BACKEND, THRESHOLDS_LOAD, HTTP_PARAMS } from './helpers/config.js';
 
-// Custom metrics
 const successRate = new Rate('success_rate');
 const backendDuration = new Trend('backend_api_duration', true);
 const frontendDuration = new Trend('frontend_page_duration', true);
 
 export const options = {
+
+  insecureSkipTLSVerify: true,
+
   stages: [
     { duration: '1m', target: 20 },
     { duration: '3m', target: 20 },
