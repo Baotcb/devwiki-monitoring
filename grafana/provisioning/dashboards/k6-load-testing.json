@@ -179,7 +179,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(k6_http_requests_total{expected_response=\"false\"}[1m]) / rate(k6_http_requests_total[1m])",
+          "expr": "rate(k6_http_reqs_total{expected_response=\"false\"}[1m]) / rate(k6_http_reqs_total[1m])",
           "legendFormat": "Error Rate",
           "refId": "A"
         }
@@ -246,7 +246,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_duration_seconds_bucket[1m])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_duration_seconds[1m]))) * 1000",
           "legendFormat": "P95",
           "refId": "A"
         }
@@ -313,7 +313,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(k6_http_requests_total[1m])",
+          "expr": "rate(k6_http_reqs_total[1m])",
           "legendFormat": "RPS",
           "refId": "A"
         }
@@ -630,7 +630,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(k6_http_requests_total[30s])",
+          "expr": "rate(k6_http_reqs_total[30s])",
           "legendFormat": "RPS",
           "refId": "A"
         },
@@ -639,7 +639,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(k6_http_requests_total{expected_response=\"false\"}[30s])",
+          "expr": "rate(k6_http_reqs_total{expected_response=\"false\"}[30s])",
           "legendFormat": "Failed RPS",
           "refId": "B"
         }
@@ -749,7 +749,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.50, sum(rate(k6_http_req_duration_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.50, sum(rate(k6_http_req_duration_seconds[30s]))) * 1000",
           "legendFormat": "P50",
           "refId": "A"
         },
@@ -758,7 +758,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.90, sum(rate(k6_http_req_duration_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.90, sum(rate(k6_http_req_duration_seconds[30s]))) * 1000",
           "legendFormat": "P90",
           "refId": "B"
         },
@@ -767,7 +767,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_duration_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_duration_seconds[30s]))) * 1000",
           "legendFormat": "P95",
           "refId": "C"
         },
@@ -776,7 +776,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.99, sum(rate(k6_http_req_duration_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.99, sum(rate(k6_http_req_duration_seconds[30s]))) * 1000",
           "legendFormat": "P99",
           "refId": "D"
         }
@@ -865,7 +865,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_blocked_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_blocked_seconds[30s]))) * 1000",
           "legendFormat": "Blocked P95",
           "refId": "A"
         },
@@ -874,7 +874,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_connecting_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_connecting_seconds[30s]))) * 1000",
           "legendFormat": "Connecting P95",
           "refId": "B"
         },
@@ -883,7 +883,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_sending_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_sending_seconds[30s]))) * 1000",
           "legendFormat": "Sending P95",
           "refId": "C"
         },
@@ -892,7 +892,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_waiting_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_waiting_seconds[30s]))) * 1000",
           "legendFormat": "Waiting (TTFB) P95",
           "refId": "D"
         },
@@ -901,7 +901,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_receiving_seconds_bucket[30s])) by (le)) * 1000",
+          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_receiving_seconds[30s]))) * 1000",
           "legendFormat": "Receiving P95",
           "refId": "E"
         }
@@ -990,7 +990,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "histogram_quantile(0.95, sum(rate(k6_http_req_duration_seconds_bucket[30s])) by (le, name)) * 1000",
+          "expr": "histogram_quantile(0.95, sum by (name) (rate(k6_http_req_duration_seconds[30s]))) * 1000",
           "legendFormat": "P95 — {{name}}",
           "refId": "A"
         }
@@ -1098,7 +1098,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(k6_http_requests_total{expected_response=\"false\"}[30s]) / rate(k6_http_requests_total[30s])",
+          "expr": "rate(k6_http_reqs_total{expected_response=\"false\"}[30s]) / rate(k6_http_reqs_total[30s])",
           "legendFormat": "Error Rate",
           "refId": "A"
         }
@@ -1186,7 +1186,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(rate(k6_http_requests_total[30s])) by (status)",
+          "expr": "sum by (status) (rate(k6_http_reqs_total[30s]))",
           "legendFormat": "HTTP {{status}}",
           "refId": "A"
         }
