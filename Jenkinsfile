@@ -5,9 +5,9 @@ pipeline {
         githubPush()
     }
     environment {
-        SSH_CREDENTIALS_ID = 'devwiki-target-ssh'
-        DEPLOY_HOST_ID     = 'devwiki-deploy-host'
-        DEPLOY_USER_ID     = 'devwiki-deploy-user'
+        SSH_CREDENTIALS_ID = 'devwiki-prod-ssh'
+        DEPLOY_HOST_ID     = 'devwiki-prod-deploy-host'
+        DEPLOY_USER_ID     = 'devwiki-prod-deploy-user'
         DEPLOY_DIR_ID      = 'devwiki-deploy-dir'
     }
 
